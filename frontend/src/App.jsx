@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme.js";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import { Home } from "@mui/icons-material";
 
 const router = createBrowserRouter([
   {
@@ -27,15 +29,15 @@ const router = createBrowserRouter([
 ]);
 function App() {
   const mode = useSelector((state) => state.mode);
-  const theme = useMemo(() => createTheme(themeSettings(mode), [mode]));
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
   return (
     <>
-      <RouterProvider router={router}>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router}>
           <CssBaseline />
-        </ThemeProvider>
-      </RouterProvider>
+        </RouterProvider>
+      </ThemeProvider>
     </>
   );
 }
